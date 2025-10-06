@@ -28,7 +28,6 @@ body {
 
 h1 {
   text-align: center;
-
 }
 
 /* Hero mit Bannerbild */
@@ -36,25 +35,19 @@ h1 {
   position: relative;
   width: 100%;
   height: 50vh;
-  /* 20% der Gerätehöhe */
   background-image: url('/Bilder/PANA7662.jpg');
-  /* <-- hier dein Bild einfügen */
   background-size: cover;
-  /* Bild füllt Fläche ohne Verzerrung */
   background-position: center;
-  /* Fokus auf die Mitte */
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  /* Text sichtbar auf Bild */
   text-align: center;
 }
 
 .hero-overlay {
   background: rgba(0, 0, 0, 0);
-  /* Halbtransparente Abdunklung für bessere Lesbarkeit */
   padding: 2rem;
   border-radius: 6px;
 }
@@ -69,7 +62,6 @@ h1 {
   margin: 0;
 }
 
-
 /* Portfolio Grid */
 .portfolio {
   padding: 2rem;
@@ -80,8 +72,18 @@ h1 {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 15px;
   margin-left: 7vh;
+  margin-right: 7vh;
 }
 
+/* Make anchor the positioned container so overlay sits above the image only */
+.gallery a {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+/* image styling */
 .gallery img {
   width: 100%;
   height: 100%;
@@ -89,30 +91,29 @@ h1 {
   display: block;
   object-fit: cover;
   aspect-ratio: 3 / 2;
-  overflow: hidden;
   cursor: pointer;
-  position: relative;
   transition: transform 0.25s ease;
-  margin-top: 20px;
+  margin-top: 0;
 }
 
 .gallery img:hover {
   transform: scale(1.05);
 }
 
+/* overlay positioned relative to the anchor */
 .gallery .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.65);
   color: white;
   opacity: 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   transition: opacity 0.3s ease;
-  text-align: center;
   padding: 1rem;
+  text-align: center;
 }
 
 .gallery a:hover .overlay {
@@ -136,7 +137,6 @@ h1 {
   display: flex;
   opacity: 1;
 }
-
 
 .lightbox img {
   max-width: 90%;
@@ -200,7 +200,7 @@ h1 {
 }
 
 .video-thumb {
-  aspect-ratio: 16 / 9; /* Standard YouTube */
+  aspect-ratio: 16 / 9;
   width: 100%;
   overflow: hidden;
 }
@@ -230,7 +230,6 @@ h1 {
 .video-card:hover .video-overlay {
   opacity: 1;
 }
-
 
 .footer {
   padding: 1rem;
