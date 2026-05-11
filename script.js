@@ -17,7 +17,6 @@ if (cursor && cursorDot) {
     cursorDot.style.top  = mouseY + 'px';
   });
 
-  // Smooth lag on outer ring
   function animateCursor() {
     curX += (mouseX - curX) * 0.12;
     curY += (mouseY - curY) * 0.12;
@@ -62,7 +61,6 @@ mobileLinks.forEach(link => {
    ============================================================ */
 const heroBg = document.getElementById('heroBg');
 if (heroBg) {
-  // Trigger the zoom-in animation
   setTimeout(() => heroBg.classList.add('loaded'), 100);
 
   window.addEventListener('scroll', () => {
@@ -83,7 +81,6 @@ revealEls.forEach(el => el.classList.add('reveal'));
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {
     if (entry.isIntersecting) {
-      // Stagger children slightly
       setTimeout(() => entry.target.classList.add('visible'), i * 40);
       revealObserver.unobserve(entry.target);
     }
@@ -95,12 +92,11 @@ revealEls.forEach(el => revealObserver.observe(el));
 /* ============================================================
    GALLERY FILTER
    ============================================================ */
-const filterBtns  = document.querySelectorAll('.filter-btn');
+const filterBtns   = document.querySelectorAll('.filter-btn');
 const galleryItems = document.querySelectorAll('.gallery-item');
 
 filterBtns.forEach(btn => {
   btn.addEventListener('click', () => {
-    // Update active state
     filterBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
 
