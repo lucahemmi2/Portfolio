@@ -439,6 +439,16 @@ body:has(button:hover) .cursor { transform: translate(-50%,-50%) scale(1.8); bac
 .footer-links a { transition: color var(--transition); }
 .footer-links a:hover { color: var(--text-1); }
 
+/* iframe-shield: transparent overlay that keeps mousemove events
+   reachable by document so the custom cursor keeps working.
+   Removed on first click so the user can play the video. */
+.iframe-shield {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  cursor: none;
+}
+
 /* ============================================================
    SCROLL REVEAL
    ============================================================ */

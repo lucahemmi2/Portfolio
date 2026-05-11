@@ -103,11 +103,48 @@ filterBtns.forEach(btn => {
     const filter = btn.dataset.filter;
 
     galleryItems.forEach(item => {
-      const cat = item.dataset.category;
-      const show = filter === 'all' || cat === filter;
+      // Split comma-separated categories so "landscape, wedding" matches both filters
+      const cats = (item.dataset.category || '').split(',').map(c => c.trim());
+      const show = filter === 'all' || cats.includes(filter);
       item.classList.toggle('hidden', !show);
     });
   });
+});
+
+/* ============================================================
+   CURSOR FIX – iframes block mousemove events
+   Overlay iframes with a transparent div; on click, remove it
+   so the user can still interact with the video.
+   ============================================================ */
+document.querySelectorAll('.video-frame').forEach(frame => {
+  // Create a transparent click-shield over the iframe
+  const shield = document.createElement('div');
+  shield.className = 'iframe-shield';
+  frame.style.position = 'relative';
+  frame.appendChild(shield);
+
+  // First click activates the video (removes shield), cursor resumes normally
+  shield.addEventListener('click', () => {
+    shield.remove();
+  });
+
+  // When mouse leaves the video card, restore the shield so cursor works again
+  const card = frame.closest('.video-card');
+  if (card) {
+    card.addEventListener('mouseleave', () => {
+      if (!frame.querySelector('.iframe-shield')) {
+        const newShield = document.createElement('div');
+        newShield.className = 'iframe-shield';
+        frame.appendChild(newShield);
+        newShield.addEventListener('click', () => newShield.remove());
+        card.addEventListener('mouseleave', () => {
+          if (!frame.querySelector('.iframe-shield')) {
+            // already handled by outer listener re-adding
+          }
+        }, { once: true });
+      }
+    });
+  }
 });
 
 /* ============================================================
